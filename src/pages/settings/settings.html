@@ -1,0 +1,74 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar class="ion-navbar">
+    <ion-title class="ion-title">Settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-list-header style="padding-bottom:0;margin-bottom:0;color:black;font-size:1.1em;">
+      LED Brightness
+    </ion-list-header>
+	<ion-item>
+	  <ion-range [(ngModel)]="brightness" min="0" max="100"  pin="true" (ionBlur)="set_brightness(brightness)" style=""> 
+	    <ion-icon range-left small name="sunny"></ion-icon>
+	    <ion-icon range-right name="sunny"></ion-icon>
+	  </ion-range>
+	</ion-item>
+
+
+	<ion-list-header style="padding-bottom:0;margin-bottom:0;color:black;font-size:1.1em;">
+      Hit Sensitivity <span style="color:#666;font-size:1em;padding-left:20px;">lower values are more sensitive</span>
+    </ion-list-header>
+    
+	<ion-item>
+	  <ion-range [(ngModel)]="sensitivity" min="0" max="100"  pin="true" (ionBlur)="set_hit_sensitivity(sensitivity)" style=""> 
+	    <ion-icon range-left small name="add-circle"></ion-icon>
+	    <ion-icon range-right name="remove-circle"></ion-icon>
+	  </ion-range>
+	</ion-item>
+
+
+	<ion-item>
+	  <ion-label>Speed Start</ion-label>
+	  <ion-toggle [(ngModel)]=speedStart name="speedStart" (click)="toggle_speed_start(speedStart)" checked="{{speedStart}}" ></ion-toggle>
+	</ion-item>
+
+	<ion-item>
+	  <ion-label>Idle Blink</ion-label>
+	  <ion-toggle [(ngModel)]=idleBlink name="idleBlink" (click)="toggle_idle_blink(idleBlink)" checked="{{idleBlink}}" ></ion-toggle>
+	</ion-item>
+
+	<ion-item>
+		{{ resetTargetsMsg }}
+		<button ion-button icon-start default full (click)="reset_targets()">
+              <ion-icon name="locate"></ion-icon>
+              Reset Targets
+        </button>
+    </ion-item>
+
+    <ion-item>
+    	{{ deleteTargetsMsg }}
+		<button ion-button icon-start default full (click)="delete_target_list()">
+              <ion-icon name="locate"></ion-icon>
+              Delete Target List
+        </button>
+    </ion-item>
+    <ion-item>
+    	{{ restartBasestationMsg }}
+		<button ion-button icon-start default full color=danger (click)="restart_basestation()">
+              <ion-icon name="refresh"></ion-icon>
+              Restart Basestation
+        </button>
+    </ion-item>
+
+</ion-content>

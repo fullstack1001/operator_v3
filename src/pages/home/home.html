@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-navbar class="ion-navbar">
+
+
+    <ion-buttons start>
+      <button ion-button icon-only>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+
+
+
+
+    <ion-title class="ion-title"><img class="title-image" src="../assets/imgs/xfirelive.png" ></ion-title>
+
+
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="home-content">
+ 
+
+    <img src="../assets/imgs/operator.png" />
+
+    <div *ngIf="connection">
+
+      <ion-grid class="connection">
+        <ion-row >
+          <ion-col col-2 >
+            <ion-icon name="wifi"  class="wifi" style="font-size:4em; padding:5% 0 0 15%;"></ion-icon> 
+          </ion-col>
+          <ion-col col-10 >
+            <h3 style="padding-top:10px;">Connected to basestation!</h3>
+
+            <button ion-button icon-start clear (click)="discoverTargets()">
+              <ion-icon name="locate"></ion-icon>
+              Re-discover Targets
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+    </div>
+
+    <div *ngIf="!connection">
+
+      <ion-grid class="connection">
+        <ion-row >
+          <ion-col col-1 >
+            <ion-icon name="wifi"  class="wifi-black" style="font-size:4em; padding:10% 0 0 15%;"></ion-icon> 
+          </ion-col>
+          <ion-col col-11 >
+            <h3>Not connected to basestation!</h3>
+            <span class="dangertext">Make sure you are connected to XFireLive's WiFi!</span><br/>
+            <button ion-button icon-start clear (click)="discoverTargets()">
+              <ion-icon name="locate"></ion-icon>
+              Discover Targets
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div>
+
+
+    <ion-grid class="connection">
+      <ion-row>
+        <ion-col >
+            Targets online: {{targetsOnline}}<br/>
+        </ion-col>
+      </ion-row>
+      <ion-row class="even-width-row" >
+          <ion-col class="even-width-col" *ngFor="let targ of targets">    
+            <button ion-button  style="width:100%" (click)="flashTarget(targ)">{{targ}}</button>
+          </ion-col>
+      </ion-row>
+    </ion-grid>
+   
+   
+
+
+    <ion-list>
+     
+      <ion-item>
+        <ion-icon name="warning" item-start></ion-icon>
+          Safety Instructions
+      </ion-item>
+      <ion-item>
+        <ion-icon name="list" item-start></ion-icon>
+          Getting Started
+      </ion-item>
+      <ion-item>
+        <ion-icon name="battery-charging" item-start></ion-icon>
+          Battery Levels
+      </ion-item>
+      <ion-item>
+        <ion-icon name="document" item-start></ion-icon>
+          Terms and Conditions
+      </ion-item>
+      <ion-item>
+        <ion-icon name="code" item-start></ion-icon>
+          Version Info
+      </ion-item>
+    </ion-list>
+
+ 
+</ion-content>

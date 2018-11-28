@@ -1,0 +1,80 @@
+<!--
+  Generated template for the DrillsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar class="ion-navbar">
+    <ion-title  class="ion-title">Drills</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+	<div *ngIf="showGameList" class="list" style="position:relative;top:40;">
+          <div class="item item-divider " style="padding:16px;font-weight:900">
+            Select a game
+          </div>
+          <div item item-text-wrap >
+
+
+          	 
+			<ion-list radio-group >
+			<ion-item *ngFor="let game of gameList; let i = index;">
+				<ion-radio value="{{game.game_name}}" [checked]="" (click)="add_game_to_view(game.game_type_id)" ></ion-radio>
+				<ion-label>
+					{{game.game_name}}
+				</ion-label>
+			</ion-item>
+
+			</ion-list>
+		 
+<!--
+            <ion-list>
+              <ion-radio  class="playername" (click)="add_game_to_view(game.game_type_id)"  *ngFor="game in game_types">{{game.game_name}}</ion-radio>
+              <ion-checkbox ng-show="checkbox_list_players" class="playername" (click)="add_game_to_view('{{game.game_type_id}}')"  *ngFor="game in game_types">{{game.game_name}}</ion-checkbox>
+            </ion-list>-->
+      
+          </div>
+    </div>
+
+
+    <button id="gamesDrills-button1" *ngIf="showRefreshButton" (click)="doRefresh()" class="button button-positive   button" style="width:49%">
+      New game 
+    </button>
+    <button id="gamesDrills-button1" *ngIf="showRefreshButton" ng-disabled="target_online_count<0" (click)="goToGame()" class="button button-positive   button" style="width:49%; margin-bottom:5px;">
+      Next <i class="icon ion-play"></i>
+    </button>
+
+
+
+    <ion-grid>
+  <ion-row>
+    <ion-col col-2>
+     
+      <div class="input-label">
+        <button class=" icon-left  button-clear" (click)="showAlert('speed')"><i class="icon ion-ios-help-outline"></i></button>
+        Speed
+      </div>
+   
+</ion-col>
+<ion-col>
+	<label class="item item-input item-select " *ngIf="showSpeed">
+      	<ion-item>
+		  <ion-label>Speed</ion-label>
+		  <ion-select [(ngModel)]="set_speed" [placeholder]="set_speed" (ngModelChange)="updateSpeed( $event)">
+		    <ion-option *ngFor="let s of speed" [value]="s.id">{{s.name}}</ion-option>
+		  </ion-select>
+		</ion-item>
+
+
+     <!-- <select ng-model="set_speed" ng-change="updateSpeed(set_speed.id)" ng-options="s.name for s in speed "></select>-->
+    </label>
+</ion-col></ion-row></ion-grid>
+
+</ion-content>
